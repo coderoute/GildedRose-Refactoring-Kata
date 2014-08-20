@@ -1,10 +1,50 @@
 package com.gildedrose;
 
+import com.gildedrose.policies.*;
+
+import static com.gildedrose.condition.Condition.*;
+import static com.gildedrose.policies.QualityDegradesEachDay.qualityDegradesBy2EachDay;
+import static com.gildedrose.policies.QualityDegradesEachDay.qualityDegradesEachDay;
+import static com.gildedrose.policies.QualityImprovesEachDay.qualityImprovesBy3EachDay;
+import static com.gildedrose.policies.QualityImprovesEachDay.qualityImprovesEachDay;
+import static com.gildedrose.policies.QualityImprovesEachDay.qualityImprovesBy2EachDay;
+import static com.gildedrose.policies.QualityIsZero.qualityIsZero;
+
 class GildedRose {
+
+    SellInGivenDays sellInGivenDays = new SellInGivenDays();
+
+    QualityNeverIncreasesBeyond50 qualityNeverIncreasesBeyond50 = new QualityNeverIncreasesBeyond50();
+
     Item[] items;
 
     public GildedRose(Item[] items) {
         this.items = items;
+    }
+
+    public void updateQualityV2() {
+        for(Item item: items) {
+            switch (item.name) {
+                case "Aged Brie": PolicyApplier.apply(item,
+                        qualityImprovesEachDay(sellInGreaterThan(0)),
+                        qualityImprovesBy2EachDay(sellInLessThanOrEquals(0)),
+                        sellInGivenDays);
+                    break;
+                case "Backstage passes to a TAFKAL80ETC concert":
+                    PolicyApplier.apply(item,
+                            qualityImprovesEachDay(sellInGreaterThan(10)),
+                            qualityImprovesBy2EachDay(sellInLessThanOrEquals(10), sellInGreaterThan(5)),
+                            qualityImprovesBy3EachDay(sellInLessThanOrEquals(5), sellInGreaterThan(0)),
+                            qualityIsZero(sellInLessThanOrEquals(0)),
+                            sellInGivenDays);
+                    break;
+                default: PolicyApplier.apply(item,
+                        qualityDegradesEachDay(sellInGreaterThan(0)),
+                        qualityDegradesBy2EachDay(sellInLessThanOrEquals(0)),
+                        sellInGivenDays);
+            }
+            qualityNeverIncreasesBeyond50.apply(item);
+        }
     }
 
     public void updateQuality() {
