@@ -1,8 +1,8 @@
-package com.gildedrose.policies.rules;
+package com.gildedrose.policy.rules;
 
 import com.gildedrose.Item;
 
-public interface UpdatePolicy {
+public interface UpdateRule {
 
     /**
      * Updates the item's 'sell in' value

@@ -1,13 +1,11 @@
-package com.gildedrose.policies;
+package com.gildedrose.policy;
 
 import static com.gildedrose.condition.Condition.sellInGreaterThan;
 import static com.gildedrose.condition.Condition.sellInLessThanOrEquals;
-import static com.gildedrose.policies.rules.QualityDegradesEachDay.qualityDegradesBy2EachDay;
-import static com.gildedrose.policies.rules.QualityDegradesEachDay.qualityDegradesEachDay;
-import static com.gildedrose.policies.rules.QualityImprovesEachDay.qualityImprovesBy2EachDay;
-import static com.gildedrose.policies.rules.QualityImprovesEachDay.qualityImprovesEachDay;
+import static com.gildedrose.policy.rules.QualityImprovesEachDay.qualityImprovesBy2EachDay;
+import static com.gildedrose.policy.rules.QualityImprovesEachDay.qualityImprovesEachDay;
 
-public class AgedBriePolicy extends BaseItemPolicy {
+public class AgedBriePolicy extends GeneralItemPolicy {
 
     public AgedBriePolicy() {
         super();

@@ -1,22 +1,15 @@
 package com.gildedrose;
 
-import com.gildedrose.policies.*;
-
-import static com.gildedrose.condition.Condition.*;
-import static com.gildedrose.policies.rules.QualityDegradesEachDay.qualityDegradesBy2EachDay;
-import static com.gildedrose.policies.rules.QualityDegradesEachDay.qualityDegradesEachDay;
-import static com.gildedrose.policies.rules.QualityImprovesEachDay.qualityImprovesBy3EachDay;
-import static com.gildedrose.policies.rules.QualityImprovesEachDay.qualityImprovesEachDay;
-import static com.gildedrose.policies.rules.QualityImprovesEachDay.qualityImprovesBy2EachDay;
-import static com.gildedrose.policies.rules.QualityIsZero.qualityIsZero;
+import com.gildedrose.policy.*;
 
 class GildedRose {
 
     Item[] items;
 
-    private BaseItemPolicy baseItemPolicy = new BaseItemPolicy();
+    private GeneralItemPolicy generalItemPolicy = new GeneralItemPolicy();
     private AgedBriePolicy agedBriePolicy = new AgedBriePolicy();
     private BackstagePassPolicy backstagePassPolicy = new BackstagePassPolicy();
+    private SulfurasPolicy sulfurasPolicy = new SulfurasPolicy();
 
 
     public GildedRose(Item[] items) {
@@ -32,7 +25,10 @@ class GildedRose {
                 case "Backstage passes to a TAFKAL80ETC concert":
                     backstagePassPolicy.apply(item);
                     break;
-                default: baseItemPolicy.apply(item);
+                case "Sulfuras, Hand of Ragnaros":
+                    sulfurasPolicy.apply(item);
+                    break;
+                default: generalItemPolicy.apply(item);
             }
         }
     }

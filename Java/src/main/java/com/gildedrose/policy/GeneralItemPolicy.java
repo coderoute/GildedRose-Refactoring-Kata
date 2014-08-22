@@ -1,41 +1,26 @@
-package com.gildedrose.policies;
+package com.gildedrose.policy;
 
-import com.gildedrose.Item;
-import com.gildedrose.policies.rules.QualityIsNeverNegative;
-import com.gildedrose.policies.rules.QualityNeverIncreasesBeyond50;
-import com.gildedrose.policies.rules.SellInGivenDays;
-import com.gildedrose.policies.rules.UpdatePolicy;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.gildedrose.policy.rules.QualityIsNeverNegative;
+import com.gildedrose.policy.rules.QualityNeverIncreasesBeyond50;
+import com.gildedrose.policy.rules.SellInGivenDays;
 
 import static com.gildedrose.condition.Condition.sellInGreaterThan;
 import static com.gildedrose.condition.Condition.sellInLessThanOrEquals;
-import static com.gildedrose.policies.rules.QualityDegradesEachDay.qualityDegradesBy2EachDay;
-import static com.gildedrose.policies.rules.QualityDegradesEachDay.qualityDegradesEachDay;
+import static com.gildedrose.policy.rules.QualityDegradesEachDay.qualityDegradesBy2EachDay;
+import static com.gildedrose.policy.rules.QualityDegradesEachDay.qualityDegradesEachDay;
 
-public class BaseItemPolicy {
+public class GeneralItemPolicy extends BaseItemPolicy {
 
     private SellInGivenDays sellInGivenDays = new SellInGivenDays();
     private QualityNeverIncreasesBeyond50 qualityNeverIncreasesBeyond50 = new QualityNeverIncreasesBeyond50();
     private QualityIsNeverNegative qualityIsNeverNegative = new QualityIsNeverNegative();
 
-    private List<UpdatePolicy> policyList = new ArrayList<>();
-
-    public BaseItemPolicy() {
+    public GeneralItemPolicy() {
         qualityChangeWhenSellInGreaterThanZeroDays();
         qualityChangeWhenSellInLessThanOrEqualsZeroDays();
         qualityHasUpperLimit();
         qualityHasLowerLimit();
         sellInGivenDays();
-    }
-
-    public void addPolicy(UpdatePolicy policy) {
-        policyList.add(policy);
-    }
-
-    public void apply(Item item) {
-        PolicyApplier.apply(item, policyList);
     }
 
     public void sellInGivenDays() {

@@ -1,8 +1,8 @@
-package com.gildedrose.policies.rules;
+package com.gildedrose.policy.rules;
 
 import com.gildedrose.Item;
 
-public class QualityIsNeverNegative implements UpdatePolicy {
+public class QualityIsNeverNegative implements UpdateRule {
     @Override
     public void apply(Item item) {
         if(item.quality < 0) {

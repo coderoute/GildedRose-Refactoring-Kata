@@ -1,9 +1,9 @@
-package com.gildedrose.policies.rules;
+package com.gildedrose.policy.rules;
 
 import com.gildedrose.Item;
 import com.gildedrose.condition.Condition;
 
-public class QualityIsZero implements UpdatePolicy {
+public class QualityIsZero implements UpdateRule {
 
     private Condition conditon;
 

@@ -1,9 +1,9 @@
-package com.gildedrose.policies.rules;
+package com.gildedrose.policy.rules;
 
 import com.gildedrose.Item;
 import com.gildedrose.condition.Condition;
 
-public class QualityDegradesEachDay implements UpdatePolicy {
+public class QualityDegradesEachDay implements UpdateRule {
 
     private int degradationMultiple;
     private Condition[] conditions;

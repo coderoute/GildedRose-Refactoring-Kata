@@ -1,8 +1,8 @@
-package com.gildedrose.policies.rules;
+package com.gildedrose.policy.rules;
 
 import com.gildedrose.Item;
 
-public class SellInGivenDays  implements UpdatePolicy {
+public class SellInGivenDays  implements UpdateRule {
 
     /**
      * Decrements the sellIn value by 1 each time this method is called

@@ -1,8 +1,8 @@
-package com.gildedrose.policies.rules;
+package com.gildedrose.policy.rules;
 
 import com.gildedrose.Item;
 
-public class QualityNeverIncreasesBeyond50 implements UpdatePolicy {
+public class QualityNeverIncreasesBeyond50 implements UpdateRule {
 
     @Override
     public void apply(Item item) {
