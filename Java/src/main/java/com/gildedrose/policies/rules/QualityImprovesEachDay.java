@@ -1,4 +1,4 @@
-package com.gildedrose.policies;
+package com.gildedrose.policies.rules;
 
 import com.gildedrose.condition.Condition;
 
