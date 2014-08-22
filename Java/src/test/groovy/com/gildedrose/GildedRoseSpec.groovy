@@ -22,7 +22,7 @@ class GildedRoseSpec extends Specification {
     def "check rule"() {
         def item = new Item(name, sellIn, quality)
         def underTest = new GildedRose(item)
-        underTest.updateQualityV2()
+        underTest.updateQuality()
 
         expect:
         item.name == name
