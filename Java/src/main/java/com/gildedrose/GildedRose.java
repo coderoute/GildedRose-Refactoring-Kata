@@ -15,6 +15,7 @@ class GildedRose {
     SellInGivenDays sellInGivenDays = new SellInGivenDays();
 
     QualityNeverIncreasesBeyond50 qualityNeverIncreasesBeyond50 = new QualityNeverIncreasesBeyond50();
+    QualityIsNeverNegative qualityIsNeverNegative = new QualityIsNeverNegative();
 
     Item[] items;
 
@@ -44,6 +45,7 @@ class GildedRose {
                         sellInGivenDays);
             }
             qualityNeverIncreasesBeyond50.apply(item);
+            qualityIsNeverNegative.apply(item);
         }
     }
 
