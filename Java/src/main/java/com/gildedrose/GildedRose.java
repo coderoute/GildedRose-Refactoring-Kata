@@ -10,7 +10,7 @@ class GildedRose {
     private AgedBriePolicy agedBriePolicy = new AgedBriePolicy();
     private BackstagePassPolicy backstagePassPolicy = new BackstagePassPolicy();
     private SulfurasPolicy sulfurasPolicy = new SulfurasPolicy();
-
+    private ConjuredPolicy conjuredPolicy = new ConjuredPolicy();
 
     public GildedRose(Item[] items) {
         this.items = items;
@@ -27,6 +27,9 @@ class GildedRose {
                     break;
                 case "Sulfuras, Hand of Ragnaros":
                     sulfurasPolicy.apply(item);
+                    break;
+                case "Conjured":
+                    conjuredPolicy.apply(item);
                     break;
                 default: generalItemPolicy.apply(item);
             }
