@@ -4,9 +4,9 @@ import com.gildedrose.policy.rules.QualityIsNeverNegative;
 import com.gildedrose.policy.rules.QualityNeverIncreasesBeyond50;
 import com.gildedrose.policy.rules.SellInGivenDays;
 
-import static com.gildedrose.condition.Condition.sellInGreaterThan;
-import static com.gildedrose.condition.Condition.sellInLessThanOrEquals;
-import static com.gildedrose.policy.rules.QualityDegradesEachDay.qualityDegradesBy2EachDay;
+import static com.gildedrose.expression.Condition.whenSellInGreaterThan;
+import static com.gildedrose.expression.Condition.whenSellInLessThanOrEquals;
+import static com.gildedrose.expression.Quantity.by;
 import static com.gildedrose.policy.rules.QualityDegradesEachDay.qualityDegradesEachDay;
 
 public class GeneralItemPolicy extends BaseItemPolicy {
@@ -36,10 +36,10 @@ public class GeneralItemPolicy extends BaseItemPolicy {
     }
 
     public void qualityChangeWhenSellInLessThanOrEqualsZeroDays() {
-        addPolicy(qualityDegradesBy2EachDay(sellInLessThanOrEquals(0)));
+        addPolicy(qualityDegradesEachDay(by(2),whenSellInLessThanOrEquals(0)));
     }
 
     public void qualityChangeWhenSellInGreaterThanZeroDays() {
-        addPolicy(qualityDegradesEachDay(sellInGreaterThan(0)));
+        addPolicy(qualityDegradesEachDay(by(1),whenSellInGreaterThan(0)));
     }
 }

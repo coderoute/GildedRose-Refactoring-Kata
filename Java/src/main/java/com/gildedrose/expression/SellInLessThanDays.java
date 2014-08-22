@@ -1,7 +1,6 @@
-package com.gildedrose.condition;
+package com.gildedrose.expression;
 
 import com.gildedrose.Item;
-import com.gildedrose.condition.Condition;
 
 public class SellInLessThanDays extends Condition {
 

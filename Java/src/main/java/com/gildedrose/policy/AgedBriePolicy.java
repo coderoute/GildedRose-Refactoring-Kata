@@ -1,8 +1,8 @@
 package com.gildedrose.policy;
 
-import static com.gildedrose.condition.Condition.sellInGreaterThan;
-import static com.gildedrose.condition.Condition.sellInLessThanOrEquals;
-import static com.gildedrose.policy.rules.QualityImprovesEachDay.qualityImprovesBy2EachDay;
+import static com.gildedrose.expression.Condition.whenSellInGreaterThan;
+import static com.gildedrose.expression.Condition.whenSellInLessThanOrEquals;
+import static com.gildedrose.expression.Quantity.by;
 import static com.gildedrose.policy.rules.QualityImprovesEachDay.qualityImprovesEachDay;
 
 public class AgedBriePolicy extends GeneralItemPolicy {
@@ -13,11 +13,11 @@ public class AgedBriePolicy extends GeneralItemPolicy {
 
     @Override
     public void qualityChangeWhenSellInLessThanOrEqualsZeroDays() {
-        addPolicy(qualityImprovesBy2EachDay(sellInLessThanOrEquals(0)));
+        addPolicy(qualityImprovesEachDay(by(2), whenSellInLessThanOrEquals(0)));
     }
 
     @Override
     public void qualityChangeWhenSellInGreaterThanZeroDays() {
-        addPolicy(qualityImprovesEachDay(sellInGreaterThan(0)));
+        addPolicy(qualityImprovesEachDay(by(1), whenSellInGreaterThan(0)));
     }
 }

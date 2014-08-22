@@ -1,9 +1,8 @@
 package com.gildedrose.policy;
 
-import static com.gildedrose.condition.Condition.sellInGreaterThan;
-import static com.gildedrose.condition.Condition.sellInLessThanOrEquals;
-import static com.gildedrose.policy.rules.QualityImprovesEachDay.qualityImprovesBy2EachDay;
-import static com.gildedrose.policy.rules.QualityImprovesEachDay.qualityImprovesBy3EachDay;
+import static com.gildedrose.expression.Condition.whenSellInGreaterThan;
+import static com.gildedrose.expression.Condition.whenSellInLessThanOrEquals;
+import static com.gildedrose.expression.Quantity.by;
 import static com.gildedrose.policy.rules.QualityImprovesEachDay.qualityImprovesEachDay;
 import static com.gildedrose.policy.rules.QualityIsZero.qualityIsZero;
 
@@ -15,13 +14,13 @@ public class BackstagePassPolicy extends GeneralItemPolicy {
 
     @Override
     public void qualityChangeWhenSellInLessThanOrEqualsZeroDays() {
-        addPolicy(qualityIsZero(sellInLessThanOrEquals(0)));
+        addPolicy(qualityIsZero(whenSellInLessThanOrEquals(0)));
     }
 
     @Override
     public void qualityChangeWhenSellInGreaterThanZeroDays() {
-        addPolicy(qualityImprovesEachDay(sellInGreaterThan(10)));
-        addPolicy(qualityImprovesBy2EachDay(sellInLessThanOrEquals(10), sellInGreaterThan(5)));
-        addPolicy(qualityImprovesBy3EachDay(sellInLessThanOrEquals(5), sellInGreaterThan(0)));
+        addPolicy(qualityImprovesEachDay(by(1), whenSellInGreaterThan(10)));
+        addPolicy(qualityImprovesEachDay(by(2), whenSellInLessThanOrEquals(10), whenSellInGreaterThan(5)));
+        addPolicy(qualityImprovesEachDay(by(3), whenSellInLessThanOrEquals(5), whenSellInGreaterThan(0)));
     }
 }

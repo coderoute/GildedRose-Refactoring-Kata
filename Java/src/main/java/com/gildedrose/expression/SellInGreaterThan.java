@@ -1,4 +1,4 @@
-package com.gildedrose.condition;
+package com.gildedrose.expression;
 
 import com.gildedrose.Item;
 

@@ -1,7 +1,7 @@
 package com.gildedrose.policy.rules;
 
 import com.gildedrose.Item;
-import com.gildedrose.condition.Condition;
+import com.gildedrose.expression.Condition;
 
 public class QualityIsZero implements UpdateRule {
 

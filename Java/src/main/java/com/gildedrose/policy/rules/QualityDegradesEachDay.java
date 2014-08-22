@@ -1,20 +1,17 @@
 package com.gildedrose.policy.rules;
 
 import com.gildedrose.Item;
-import com.gildedrose.condition.Condition;
+import com.gildedrose.expression.Condition;
+import com.gildedrose.expression.Quantity;
 
 public class QualityDegradesEachDay implements UpdateRule {
 
-    private int degradationMultiple;
+    private Quantity quantity;
     private Condition[] conditions;
 
-    protected QualityDegradesEachDay(Condition ... conditions) {
-        this(1, conditions);
-    }
-
-    protected QualityDegradesEachDay(int degradationMultiple, Condition ... conditions) {
+    protected QualityDegradesEachDay(Quantity quantity, Condition ... conditions) {
         this.conditions = conditions;
-        this.degradationMultiple = degradationMultiple;
+        this.quantity = quantity;
     }
 
     public void apply(Item item) {
@@ -27,16 +24,12 @@ public class QualityDegradesEachDay implements UpdateRule {
         }
 
         if(conditionsSatisfied) {
-            item.quality = item.quality - degradationMultiple;
+            item.quality = item.quality - quantity.getValue();
         }
     }
 
-    public static QualityDegradesEachDay qualityDegradesEachDay(Condition ... conditions) {
-        return new QualityDegradesEachDay(conditions);
-    }
-
-    public static QualityDegradesEachDay qualityDegradesBy2EachDay(Condition ... conditions) {
-        return new QualityDegradesEachDay(2, conditions);
+    public static QualityDegradesEachDay qualityDegradesEachDay(Quantity quantity, Condition ... conditions) {
+        return new QualityDegradesEachDay(quantity, conditions);
     }
 
 }

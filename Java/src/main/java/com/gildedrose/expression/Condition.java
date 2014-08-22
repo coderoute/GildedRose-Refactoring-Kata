@@ -1,4 +1,4 @@
-package com.gildedrose.condition;
+package com.gildedrose.expression;
 
 import com.gildedrose.Item;
 
@@ -10,11 +10,11 @@ public abstract class Condition {
         return new SellInLessThanDays(days);
     }
 
-    public static SellInLessThanDays sellInLessThanOrEquals(int days) {
+    public static SellInLessThanDays whenSellInLessThanOrEquals(int days) {
         return new SellInLessThanDays(days + 1);
     }
 
-    public static SellInGreaterThan sellInGreaterThan(int days) {
+    public static SellInGreaterThan whenSellInGreaterThan(int days) {
         return new SellInGreaterThan(days);
     }
 
